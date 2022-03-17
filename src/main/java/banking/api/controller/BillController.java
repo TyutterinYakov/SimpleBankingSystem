@@ -26,6 +26,8 @@ public class BillController {
     public static final String UPDATE_MAIN_BILL = "/api/clients/{clientId}/bills/{billId}";
 
 
+
+
     @GetMapping(GET_LIST_BILL_BY_CLIENT)
     public ResponseEntity<List<BillDto>> getListBill(@PathVariable("clientId") Long clientId){
         return ResponseEntity.ok(billService.getListBillByClient(clientId));

@@ -22,6 +22,10 @@ public class BillEntity {
     private List<TransactionalEntity> transactionalSenders = new ArrayList<>();
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "billRecipient")
     private List<TransactionalEntity> transactionalRecipients = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "bill")
+    private List<WithdrawEntity> withdraws = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "bill")
+    private List<DepositEntity> deposits = new ArrayList<>();
 
 
     public BillEntity() {
@@ -31,6 +35,22 @@ public class BillEntity {
         this.type = type;
         this.name = name;
         this.client = client;
+    }
+
+    public List<WithdrawEntity> getWithdraws() {
+        return withdraws;
+    }
+
+    public void setWithdraws(List<WithdrawEntity> withdraws) {
+        this.withdraws = withdraws;
+    }
+
+    public List<DepositEntity> getDeposits() {
+        return deposits;
+    }
+
+    public void setDeposits(List<DepositEntity> deposits) {
+        this.deposits = deposits;
     }
 
     public String getName() {

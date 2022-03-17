@@ -11,7 +11,8 @@ public class TransactionalEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long transactionalId;
-    private TransactionalStatus status;
+    @Enumerated(value=EnumType.STRING)
+    private OperationStatus status;
     private BigDecimal summ;
     private LocalDateTime dateOperation = LocalDateTime.now();
     @ManyToOne(cascade = CascadeType.REFRESH, fetch=FetchType.EAGER)
@@ -24,6 +25,16 @@ public class TransactionalEntity {
     private ClientEntity clientRecipient;
 
 
+    public TransactionalEntity() {
+    }
+
+    public TransactionalEntity(BigDecimal summ, BillEntity billSender, BillEntity billRecipient,OperationStatus status) {
+        this.summ = summ;
+        this.billSender = billSender;
+        this.billRecipient = billRecipient;
+        this.status = status;
+    }
+
     public Long getTransactionalId() {
         return transactionalId;
     }
@@ -32,11 +43,11 @@ public class TransactionalEntity {
         this.transactionalId = transactionalId;
     }
 
-    public TransactionalStatus getStatus() {
+    public OperationStatus getStatus() {
         return status;
     }
 
-    public void setStatus(TransactionalStatus status) {
+    public void setStatus(OperationStatus status) {
         this.status = status;
     }
 

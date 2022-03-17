@@ -1,5 +1,5 @@
 package banking.store.entity;
 
-public enum TransactionalStatus {
+public enum OperationStatus {
     OKEY, BAD, CHECK
 }

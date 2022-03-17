@@ -9,10 +9,11 @@ import banking.store.entity.BillEntity;
 import banking.store.entity.ClientEntity;
 import banking.store.repository.BillRepository;
 import banking.store.repository.ClientRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
+@Service
 public class BillServiceImpl implements BillService {
 
     private final BillRepository billDao;

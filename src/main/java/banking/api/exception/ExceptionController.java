@@ -12,4 +12,9 @@ public class ExceptionController {
     public ResponseEntity<?> notFoundException(NotFoundException ex){
         return new ResponseEntity<>(ex.getMessage(),HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler
+    public ResponseEntity<?> badRequestException(BadRequestException ex){
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
 }
