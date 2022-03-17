@@ -1,5 +1,7 @@
 package banking.store.entity;
 
+import banking.api.model.ClientModel;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +22,15 @@ public class ClientEntity {
     private List<TransactionalEntity> senderTransactions = new ArrayList<>();
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "clientRecipient")
     private List<TransactionalEntity> recipientTransactions = new ArrayList<>();
+
+    public ClientEntity() {
+    }
+
+    public ClientEntity(String lastName, String firstName, String middleName) {
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.middleName = middleName;
+    }
 
     public Long getClientId() {
         return clientId;
@@ -76,4 +87,5 @@ public class ClientEntity {
     public void setRecipientTransactions(List<TransactionalEntity> recipientTransactions) {
         this.recipientTransactions = recipientTransactions;
     }
+
 }

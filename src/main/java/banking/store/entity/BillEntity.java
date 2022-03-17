@@ -13,7 +13,9 @@ public class BillEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long billId;
     private BillType type;
-    private BigDecimal balance;
+    private BigDecimal balance = new BigDecimal(0);
+    private String name;
+    private boolean mainBill = false;
     @ManyToOne(cascade=CascadeType.REFRESH, fetch=FetchType.EAGER)
     private ClientEntity client;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "billRecipient")
@@ -22,6 +24,22 @@ public class BillEntity {
     private List<TransactionalEntity> transactionalRecipients = new ArrayList<>();
 
 
+    public BillEntity() {
+    }
+
+    public BillEntity(BillType type, String name, ClientEntity client) {
+        this.type = type;
+        this.name = name;
+        this.client = client;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public Long getBillId() {
         return billId;
@@ -69,5 +87,13 @@ public class BillEntity {
 
     public void setTransactionalRecipients(List<TransactionalEntity> transactionalRecipients) {
         this.transactionalRecipients = transactionalRecipients;
+    }
+
+    public boolean isMainBill() {
+        return mainBill;
+    }
+
+    public void setMainBill(boolean mainBill) {
+        this.mainBill = mainBill;
     }
 }
